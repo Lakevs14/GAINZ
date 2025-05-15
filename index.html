@@ -26,6 +26,27 @@ width: 70%;
 margin:auto;
 border-radius: 10px;
 }
+#hoverImage {
+ max-width: 50%; /* Adjust this percentage as needed */
+        height: auto;
+
+        transition: transform 0.3s ease-in-out;
+    }
+
+    #hoverImage:hover {
+        transform: scale(1.1);
+    }
+#hoverCronometer {
+        max-width: 50%; /* Adjust this percentage as needed */
+        height: auto;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    #hoverCronometer:hover {
+        transform: scale(1.1);
+    }
+
+
 
 </style>
 <script>
@@ -86,11 +107,15 @@ border-radius: 10px;
   </a>
   <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-user w3-xxlarge"></i>
-    <p>ABOUT</p>
+    <p>APPROACH</p>
   </a>
-  <a href="#photos" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+   <a href="#calculator" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-calculator w3-xxlarge"></i>
+    <p>CALCULATOR</p>
+  </a>
+  <a href="#links" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-eye w3-xxlarge"></i>
-    <p>PHOTOS</p>
+    <p>Links</p>
   </a>
   <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-envelope w3-xxlarge"></i>
@@ -102,8 +127,9 @@ border-radius: 10px;
 <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
   <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
     <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
-    <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
-    <a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">PHOTOS</a>
+    <a href="#calculator" class="w3-bar-item w3-button" style="width:25% !important">CALCULATOR</a>
+     <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">APPROACH</a>
+    <a href="#links" class="w3-bar-item w3-button" style="width:25% !important">Links</a>
     <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
   </div>
 </div>
@@ -131,6 +157,8 @@ border-radius: 10px;
     <h3 class="w3-padding-16 w3-text-light-grey" style="text-align:center;">Diet (General)/ Supplements</h3>
     <p style="text-align:center; color: white;"><B>3 things you can do: Caloric Deficit/ Maintenance/ Surplus</B> <br><br></p>
 <p style="text-align:center;">If your goal is to achieve a shredded, well-defined physique, I recommend maintaining a caloric deficit until you reach your desired body fat percentage. This approach will help reveal muscle definition while ensuring you retain lean muscle mass for an aesthetic and sculpted look.<br><br></p>
+<p id="calculator"></p>
+<br><br>
 <div class= calc>
    <h2>BMR & TDEE Calculator</h2>
     <div style="display: flex; flex-direction: column; align-items: center;">
@@ -175,20 +203,32 @@ border-radius: 10px;
 
 
 
-
+<p id="links"></p>
 <br><br> 
 
-    <div class="w3-white">
-      <div class="w3-dark-grey" style="height:28px;width:95%"></div>
-    </div>
-    <p class="w3-wide">Web Design</p>
-    <div class="w3-white">
-      <div class="w3-dark-grey" style="height:28px;width:85%"></div>
-    </div>
-    <p class="w3-wide">Photoshop</p>
-    <div class="w3-white">
-      <div class="w3-dark-grey" style="height:28px;width:80%"></div>
-    </div><br>
+   <br>
+   <h3 style="color:white;">Useful Links For Macro/ Micro Nutrients</h3>
+   <p>The calculator is useful to determine the general calories needed, now we need to focus on micro and macronutrients. <br><br><b style="color:white;">Macronutrients:</b> Protein = 1g Per Bodyweight Goal, Fat = 30% of Daily Calories, Carbohydrates = Rest of Calorie Goal<br><br><b style="color:white;">Micronutrients:</b> Ensure that all vitamins and minerals are consumed daily. This can all be tracked on: <br> <br> <a href="https://cronometer.com/" target="_blank">
+    <img id="hoverCronometer" src="https://is2-ssl.mzstatic.com/image/thumb/Purple126/v4/54/42/40/544240d1-d60c-09c7-de3c-2f158ab97d69/CRONOMETER-GOLDAppIcon-0-1x_U007emarketing-0-7-0-85-220.png/1200x630wa.png" alt="Cronometer Link">
+</a>
+
+
+   <br>
+      <br>
+   <b style="color:white;">My Fitness Pal:</b> A great source to track macronutrients on mobile phones. This website does use ever users input so make sure to cross reference the macros with a google search. 
+    <br>
+      <br>
+   <a href="https://www.myfitnesspal.com/account/login" target="_blank">
+    <img id="hoverImage"
+ src="https://th.bing.com/th/id/OIP.ptn_QZX84Y1Pcdat71hAIgHaEK?cb=iwc2&rs=1&pid=ImgDetMain" alt="MyFitnessPal Login">
+</a>
+
+
+</p>
+
+   <br>
+   <br>
+   <br>
     
     <div class="w3-row w3-center w3-padding-16 w3-section w3-light-grey">
       <div class="w3-quarter w3-section">
@@ -328,5 +368,9 @@ border-radius: 10px;
 
 <!-- END PAGE CONTENT -->
 </div>
+</body>
+</html>
+
+
 </body>
 </html>
