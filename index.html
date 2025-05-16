@@ -53,9 +53,12 @@ border-radius: 10px;
 }
 .program1 {background-color:rgb(70, 70, 70);
 padding: .5%;
-width: 70%;
+width: 50%;
 margin:auto;
 border-radius: 10px;
+color:white;
+  display: none; /* Initially hidden */
+
 }
 .program:hover {
 background-color:rgb(50, 50, 50);
@@ -64,48 +67,47 @@ cursor: pointer;
 
 </style>
 <script>
+   // Toggle workout program sections with smooth scroll
+   function toggleProgram(id) {
+    let element = $("#" + id);
+    
+    // Toggle slide effect on click
+    if (element.is(":hidden")) {
+        element.slideDown();  
+        $('html, body').animate({ scrollTop: element.offset().top }, 500);
+    } else {
+        element.slideUp();
+    }
+}
+
+
+    // BMR & TDEE Calculator
     $(document).ready(function(){
         $("#calculate").click(function(){
             let weight = parseFloat($("#weight").val());
             let height = parseFloat($("#height").val());
             let age = parseInt($("#age").val());
             let activityMultiplier = parseFloat($("#activity").val());
-            let gender = $("#gender").val(); // New: Gender Selection
+            let gender = $("#gender").val();
 
-            if(!isNaN(weight) && !isNaN(height) && !isNaN(age)){
-                let bmr;
-
-                // Apply correct BMR formula based on gender
-                if (gender === "male") {
-                    bmr = (66 + (6.23 * weight) + (12.7 * height) - (6.8 * age));
-                } else {
-                    bmr = ((10 * weight) + (6.25 * height) - (5 * age) - 161);
-                }
+            if (!isNaN(weight) && !isNaN(height) && !isNaN(age)) {
+                let bmr = (gender === "male") 
+                    ? (66 + (6.23 * weight) + (12.7 * height) - (6.8 * age))
+                    : ((10 * weight) + (6.25 * height) - (5 * age) - 161);
 
                 let tdee = bmr * activityMultiplier;
-                let surplus1 = tdee + 500;
-                let surplus2 = tdee + 1000;
-                let deficit1 = tdee - 500;
-                let deficit2 = tdee - 1000;
 
                 $("#bmr-result").text(bmr.toFixed(2));
                 $("#tdee-result").text(tdee.toFixed(2));
-                $("#surplus1").text(surplus1.toFixed(2));
-                $("#surplus2").text(surplus2.toFixed(2));
-                $("#deficit1").text(deficit1.toFixed(2));
-                $("#deficit2").text(deficit2.toFixed(2));
             } else {
                 $("#bmr-result").text("Please enter valid numbers.");
                 $("#tdee-result").text("--");
-                $("#surplus1").text("--");
-                $("#surplus2").text("--");
-                $("#deficit1").text("--");
-                $("#deficit2").text("--");
             }
         });
     });
-</script>
 
+
+</script>
 
 
 </head>
@@ -129,7 +131,11 @@ cursor: pointer;
   </a>
   <a href="#links" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-eye w3-xxlarge"></i>
-    <p>Links</p>
+    <p>LINKS</p>
+  </a>
+  <a href="#lift" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-trophy w3-xxlarge"></i>
+    <p>LIFTING PROGRAM</p>
   </a>
   <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
     <i class="fa fa-envelope w3-xxlarge"></i>
@@ -143,7 +149,8 @@ cursor: pointer;
     <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
     <a href="#calculator" class="w3-bar-item w3-button" style="width:25% !important">CALCULATOR</a>
      <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">APPROACH</a>
-    <a href="#links" class="w3-bar-item w3-button" style="width:25% !important">Links</a>
+    <a href="#links" class="w3-bar-item w3-button" style="width:25% !important">LINKS</a>
+    <a href="#lift" class="w3-bar-item w3-button" style="width:25% !important">LIFTING PROGRAM</a>
     <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
   </div>
 </div>
@@ -246,59 +253,48 @@ cursor: pointer;
     
     
             
-    
+    <p id="lift"></p>
     <!-- Testimonials -->
-    <h3 class="w3-padding-24 w3-text-light-grey">Starter Powerlifting Program</h3>
-   <div class="program">
-   <h4><b style="color:white;">Day One Bench Focused</b></h4>
-  </div>
+    <h3 class="w3-padding-24 w3-text-light-grey">Advanced Powerlifting Program</h3>
+   
   <br>
-   <div class="program1">
-  <p></p>
-   </div>
-  <br>
-  <div class="program">
-  <h4><b style="color:white;">Day Two Squat Focused</b></h4>
-  </div>
-   <br>
-   <div class="program1">
-  <p></p>
-   </div>
-   <br>
-  <div class="program">
-  <h4><b style="color:white;">Day Three Back and Biceps Focused</b></h4>
-  </div>
-   <br>
-   <div class="program1">
-  <p></p>
-   </div>
-   <br>
-  <div class="program">
-  <h4><b style="color:white;">Day Four Secondary Bench</b></h4>
-  </div>
-   <br>
-   <div class="program1">
-  <p></p>
-   </div>
-   <br>
-  <div class="program">
-  <h4><b style="color:white;">Day Five Lower Posterior</b></h4>
-  </div>
-   <br>
-   <div class="program1">
-  <p></p>
+  <p>Make sure to take two rest days per week to allow your muscles time to recover and grow. Focus on progressive overload by increasing your training intensity each week. For compound lifts, aim to add 5 lbs every week, while for isolation exercises, adjust your sets, reps, or weight based on your capability. Continual small improvements will drive strength gains and muscle development over time! 🔥🏋️‍♂️ Click on the days to show the programs:
+
+
+
+</p>
+ <br>
+<div class="program" onclick="toggleProgram('day1')">
+
+<h4><b style="color:white;">Day One Bench Focused</b></h4></div><br>
+<div class="program1" id="day1">
+<p>Bench Press 65%: 4x8<br><br>Spotto Press 55%: 3x10<br><br>Machine Incline Press: 4 Sets 15, 12, 12, 10<br><br>Pec-Deck Flies: 4 Sets 20, 15, 15, 10<br><br>Dumbell Lateral Raise Drop Set: 4x(12+8)<br><br>Dumbell Rear Delt Raise: 4x12<br><br>Rope Tricep Pull Down: 4 Sets 15, 12, 12, 10<br><br>Dip Machine: 4 Sets 12, 10, 10, 8<br><br></p></div><br>
+
+<div class="program" onclick="toggleProgram('day2')">
+<h4><b style="color:white;">Day Two Squat Focused</b></h4></div><br><div class="program1" id="day2">
+
+<p>Squat 65%: 3x10<br><br>Leg Press: 4 Sets 12, 10, 10, 8<br><br>Hack Squat: 4x10<br><br>Leg Extension Super Set Goblet Squats 4x(12+8)<br><br>Calve Raises: 4x(20-15)<br><br></p></div><br><div class="program" onclick="toggleProgram('day3')">
+
+<h4><b style="color:white;">Day Three Back and Biceps Focused</b></h4></div><br><div class="program1" id="day3"><p>Lat Pull Down: 4x10<br><br>Rope Lat Pull Down: 4 Sets 15, 12, 12, 10<br><br>Chest Supported Row: 3x 8-15<br><br>Barbell Trap Raise: 4x10<br><br>Meadows Row: 4x(15-10)<br><br>Hammer Curls: 3x(15-8)<br><br>Reverse Curls: 3x(15-8)<br><br>Single Arm Cheat Curls: 3x(15-8)<br><br>Machine Preacher Curls: 3x(15-8)<br><br></p></div><br><div class="program" onclick="toggleProgram('day4')">
+
+<h4><b style="color:white;">Day Four Secondary Bench</b></h4></div><br><div class="program1" id="day4">
+<p>Floor Press 70%: 3x8<br><br>Front Delt Raise Super Set Lateral Raise: 4x(12+8)<br><br>Front Plate Raise Super Set Rear Delt Rope Pull: 4x(12+8)<br><br>Dumbell Tricep Extension: 4 Sets 20, 15, 15, 10<br><br>Straight Bar Cable Tricep Push Down: 4x10<br><br>Cable Crunches: 5x20<br><br></div><br><div class="program" onclick="toggleProgram('day5')">
+
+<h4><b style="color:white;">Day Five Lower Posterior</b></h4></div><br><div class="program1" id="day5">
+<p>Deadlifts 75%: 4x4<br><br>Rack Pulls Starting 75%, Increase 5% Every Week Unitl 90%, then increase 5 lbs every week: 3x3<br><br>Sumo Deficit Deadlift: 4x 8-15<br><br>
+  Barbell Bulgarian Split Squats: 4x8-15<br><br>
+  Leg Curls: 4x(15-10) Hold 20 Seconds Last Rep<br><br>
+   Ab Rollers: 4x15<br><br></p>
    </div>
   <!-- Portfolio Section -->
   <div class="w3-padding-64 w3-content" id="photos">
-    <h2 class="w3-text-light-grey">My Photos</h2>
-    <hr style="width:200px" class="w3-opacity">
-
+    <h2 class="w3-text-light-grey">Progress Photos</h2>
+    <hr style="width:25%; margin:auto;" class="w3-opacity">
+<br>
     <!-- Grid for photos -->
     <div class="w3-row-padding" style="margin:0 -16px">
       <div class="w3-half">
         <img src="/w3images/wedding.jpg" style="width:100%">
-        <img src="/w3images/rocks.jpg" style="width:100%">
-        <img src="/w3images/sailboat.jpg" style="width:100%">
       </div>
 
       <div class="w3-half">
@@ -315,42 +311,17 @@ cursor: pointer;
   <!-- Contact Section -->
   <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
     <h2 class="w3-text-light-grey">Contact Me</h2>
-    <hr style="width:200px" class="w3-opacity">
+    <hr style="width:25%; margin:auto;" class="w3-opacity">
 
     <div class="w3-section">
-      <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Chicago, US</p>
-      <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: +00 151515</p>
-      <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Email: mail@mail.com</p>
+      <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Lakewood, CO. US</p>
+      <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: 7202774251</p>
+      <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Email: km38191@gmail.com</p>
     </div><br>
-    <p>Let's get in touch. Send me a message:</p>
-
-    <form action="/action_page.php" target="_blank">
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="Name"></p>
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Email" required name="Email"></p>
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Subject" required name="Subject"></p>
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Message" required name="Message"></p>
-      <p>
-        <button class="w3-button w3-light-grey w3-padding-large" type="submit">
-          <i class="fa fa-paper-plane"></i> SEND MESSAGE
-        </button>
-      </p>
-    </form>
-  <!-- End Contact Section -->
-  </div>
   
-    <!-- Footer -->
-  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
-    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-  <!-- End footer -->
-  </footer>
 
-<!-- END PAGE CONTENT -->
-</div>
 </body>
 </html>
+
+
+
