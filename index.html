@@ -77,13 +77,16 @@ border-radius: 10px;
 
 </style>
 <script>
-   // Hide navbar on scroll
+  let scrollTimer;
+
   $(window).scroll(function() {
-    if ($(document).scrollTop() > 50) {
-      $("#myNavbar").fadeOut();
-    } else {
-      $("#myNavbar").fadeIn();
-    }
+    $("#myNavbar").fadeOut(); // Hide the navbar when scrolling
+
+    // Clear the previous timer and set a new one
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function() {
+      $("#myNavbar").fadeIn(); // Show the navbar once scrolling stops
+    }, 500); // Adjust the delay if needed
   });
 
   // Toggle workout program sections with smooth scroll
@@ -125,7 +128,7 @@ border-radius: 10px;
         $("#bmr-result").text(bmr.toFixed(2));
         $("#tdee-result").text(tdee.toFixed(2));
 
-        // Update Calorie Goals
+        // Update Calorie Goals dynamically
         $("#surplus1").text((tdee + 500).toFixed(2));
         $("#surplus2").text((tdee + 1000).toFixed(2));
         $("#deficit1").text((tdee - 500).toFixed(2));
@@ -360,5 +363,4 @@ border-radius: 10px;
 
 </body>
 </html>
-
 
