@@ -77,59 +77,66 @@ border-radius: 10px;
 
 </style>
 <script>
-   // Toggle workout program sections with smooth scroll
-   function toggleProgram(id) {
-    let element = $("#" + id);
-    
-    // Toggle slide effect on click
-    if (element.is(":hidden")) {
-        element.slideDown();  
-        $('html, body').animate({ scrollTop: element.offset().top }, 500);
+   // Hide navbar on scroll
+  $(window).scroll(function() {
+    if ($(document).scrollTop() > 50) {
+      $("#myNavbar").fadeOut();
     } else {
-        element.slideUp();
+      $("#myNavbar").fadeIn();
     }
-}
+  });
 
- // Toggle progress photos
-    function togglePhotos() {
-        let images = $(".progress-images");
-        images.slideToggle();
-
-        // Scroll to images when opened
-        if (images.is(":visible")) {
-            $('html, body').animate({
-                scrollTop: images.offset().top
-            }, 500);
-        }
+  // Toggle workout program sections with smooth scroll
+  function toggleProgram(id) {
+    let element = $("#" + id);
+    if (element.is(":hidden")) {
+      element.slideDown();
+      $('html, body').animate({ scrollTop: element.offset().top }, 500);
+    } else {
+      element.slideUp();
     }
+  }
 
+  // Toggle progress photos
+  function togglePhotos() {
+    let images = $(".progress-images");
+    images.slideToggle();
+    if (images.is(":visible")) {
+      $('html, body').animate({ scrollTop: images.offset().top }, 500);
+    }
+  }
 
+  // BMR & TDEE Calculator
+  $(document).ready(function() {
+    $("#calculate").click(function() {
+      let weight = parseFloat($("#weight").val());
+      let height = parseFloat($("#height").val());
+      let age = parseInt($("#age").val());
+      let activityMultiplier = parseFloat($("#activity").val());
+      let gender = $("#gender").val();
 
+      if (!isNaN(weight) && !isNaN(height) && !isNaN(age)) {
+        let bmr = (gender === "male") 
+          ? (66 + (6.23 * weight) + (12.7 * height) - (6.8 * age))
+          : ((10 * weight) + (6.25 * height) - (5 * age) - 161);
 
-    // BMR & TDEE Calculator
-    $(document).ready(function(){
-        $("#calculate").click(function(){
-            let weight = parseFloat($("#weight").val());
-            let height = parseFloat($("#height").val());
-            let age = parseInt($("#age").val());
-            let activityMultiplier = parseFloat($("#activity").val());
-            let gender = $("#gender").val();
+        let tdee = bmr * activityMultiplier;
 
-            if (!isNaN(weight) && !isNaN(height) && !isNaN(age)) {
-                let bmr = (gender === "male") 
-                    ? (66 + (6.23 * weight) + (12.7 * height) - (6.8 * age))
-                    : ((10 * weight) + (6.25 * height) - (5 * age) - 161);
+        $("#bmr-result").text(bmr.toFixed(2));
+        $("#tdee-result").text(tdee.toFixed(2));
 
-                let tdee = bmr * activityMultiplier;
-
-                $("#bmr-result").text(bmr.toFixed(2));
-                $("#tdee-result").text(tdee.toFixed(2));
-            } else {
-                $("#bmr-result").text("Please enter valid numbers.");
-                $("#tdee-result").text("--");
-            }
-        });
+        // Update Calorie Goals
+        $("#surplus1").text((tdee + 500).toFixed(2));
+        $("#surplus2").text((tdee + 1000).toFixed(2));
+        $("#deficit1").text((tdee - 500).toFixed(2));
+        $("#deficit2").text((tdee - 1000).toFixed(2));
+      } else {
+        $("#bmr-result").text("Please enter valid numbers.");
+        $("#tdee-result").text("--");
+        $("#surplus1, #surplus2, #deficit1, #deficit2").text("--");
+      }
     });
+  });
 
 
 </script>
@@ -243,9 +250,8 @@ border-radius: 10px;
     <h3>Calorie Goals:</h3>
     <div>
         <p>📈 <strong>Surplus for 1 lb/week:</strong> <span id="surplus1">--</span> calories/day</p>
-        <p>📈 <strong>Surplus for 2 lbs/week:</strong> <span id="surplus2">--</span> calories/day</p>
         <p>⚖️ <strong>Deficit for 1 lb/week:</strong> <span id="deficit1">--</span> calories/day</p>
-        <p>⚖️ <strong>Deficit for 2 lbs/week:</strong> <span id="deficit2">--</span> calories/day</p>
+        <p>⚖️ <strong>Deficit for 2 lb/week:</strong> <span id="deficit2">--</span> calories/day</p>
     </div>
 
 
